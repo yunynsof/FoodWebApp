@@ -1,0 +1,99 @@
+<app-header [notification]='notification'></app-header>
+<br><br><br>
+
+<body class="horizontal-layout horizontal-menu 2-columns  " data-open="hover" data-menu="horizontal-menu"
+  data-color="bg-gradient-x-purple-blue" data-col="2-columns">
+  <!-- BEGIN: Content-->
+  <form #form="ngForm" >
+    <div class="app-content content">
+      <div class="content-wrapper">
+        <div class="content-wrapper-before"></div>
+        <div class="content-header row">
+          <div class="content-header-left col-md-4 col-12 mb-2">
+            <h1 class="content-header-title">Realiza tu Pedido</h1>
+          </div>
+          <div class="content-header-right col-md-8 col-12">
+            <div class="breadcrumbs-top float-md-right">
+              <div class="breadcrumb-wrapper mr-1">
+                <ol class="breadcrumb">
+
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-body">
+          <!-- Carrusel -->
+
+          <div id="what-is" class="card">
+            <div class="card-header">
+              <h2>¿Cómo convertirse en un gordito?</h2>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <div class="card-text">
+                  <p>Nuestro sistema de pedidos llega a nuestra base de datos, al no mas procesar el pedido, nosotros
+                    nos estaremos comunicando con usted, tener pendientes las siguientes indicaciones </p>
+                  <ul>
+                    <li>Digitar bien su número telefónico.</li>
+                    <li>La dirección de entrega tiene que estar bien detallada para que a la hora de la entrega no
+                      tengan retrazos.</li>
+                    <li>El pago en efectivo siempre indicar cuanto vuelto hay que entregarle.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carrusel -->
+
+          <!-- Columns section start -->
+
+          <section id="columns">
+            <div class="row" id ='testid'>
+              <div class="col-md-12 mt-1">
+                <div class="card-columns">
+                  <div *ngFor="let item of combos">
+                    <div class="card">
+                      <div class="card-content">
+                        <img class="card-img-top img-fluid" src="{{item.img}}" alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title" style="color:#b60f2d;"><b>{{item.combo}}</b></h4>
+                          <p class="card-text">{{item.name}}</p>
+                          <p class="card-text">{{item.description}}</p>
+                          <h5>L.{{item.prize}}</h5>
+                          <div class="input-group btn-group-toggle"  data-toggle="buttons">
+                           <!-- <input type="number" placeholder="Cantidad..." min="1"   name="quantity" [(ngModel)]="item.quantity" class="form-control width-100 text-center">-->
+                            <button  class="btn btn-outline-dark box-shadow-1 btn-sm" title="Restar combo" (click)="subtractQuantity(item)">−</button>
+                            <input placeholder="Cantidad..." name="quantity" value={{item.quantity}} class="form-control width-80 text-center ">
+                            <button  class="btn btn-outline-success box-shadow-1 btn-sm mr-1" title="Sumar combo" (click)="sumQuantity(item)">+</button>
+                           <div class="input-group-append">
+                              <button class="btn btn-outline-info" type="button" title="Agregar combo" (click)="addCombo(item)">Añadir</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Columns section end -->
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- END: Content-->
+
+  <!-- BEGIN: Footer--><a  *ngIf="notification > '0'" class="btn btn-try-builder btn-bg-gradient-x-purple-red btn-glow white" title="Realizar pedido"
+    (click)="pagar()">PROCESAR AHORA!</a>
+  <footer class="footer footer-static footer-light navbar-shadow">
+    <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span
+        class="float-md-center d-block d-md-inline-block">2019 &copy; Copyright <a class="text-bold-800 grey darken-2"
+          href="www.hmd.consulting" target="_blank">HMD CONSULTING</a></span>
+    </div>
+  </footer>
+  <!-- END: Footer-->
+
+</body>

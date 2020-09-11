@@ -1,0 +1,58 @@
+<div class="sticky">
+  <div class="horizontal-layout horizontal-menu 2-columns" data-open="hover" data-menu="horizontal-menu"
+    data-color="bg-gradient-x-purple-blue" data-col="2-columns">
+    <nav
+      class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow navbar-static-top navbar-light navbar-brand-center border-yellow border-darken-1 h-100 border-left-radius-palette">
+      <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+
+          <li class="nav-item"><a class="navbar-brand" title="Pedidos" (click)="home()"><img class="brand-logo"
+                alt="creaative admin logo" src="assets/app-assets/images/logo/logo.png">
+              <h3 class="brand-text">ArepasTegus</h3>
+            </a></li>
+          <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse"
+              data-target="#navbar-mobile"><i class="la la-ellipsis-v"></i></a></li>
+        </ul>
+      </div>
+      <div class="navbar-wrapper">
+        <div class="navbar-container content">
+          <div class="collapse navbar-collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav mr-auto float-left">
+            </ul>
+            <ul class="nav navbar-nav float-right">
+
+              <!-- aca deberia de ir cada producto que estoy eligiendo (elijo 3 combos aca debería de salirme)-->
+              <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" title="Carrito de compra"
+                  (click)="pagar()"><i class="ficon ft-shopping-cart bell-shake" style="color: rgb(75, 73, 73);"></i><span
+                    class="badge badge-pill badge-sm badge-danger badge-up badge-glow">{{notification}}</span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                  <div class="arrow_box_right">
+                  </div>
+                </ul>
+              </li>
+
+              <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
+                 data-toggle="dropdown" title="Usuario"> <span class="avatar avatar-online"><img
+                      src="assets/app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"></span></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <div class="arrow_box_right"><a class="dropdown-item"><span class="avatar avatar-online"><img
+                          src="assets/app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><span
+                          class="user-name text-bold-700 ml-1">{{username}}</span></span></a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" (click)="userProfile()"><i
+                        class="ft-user"></i> Editar Perfil</a><a class="dropdown-item" (click)="record()"><i
+                        class="ft-file-text"></i>Historial</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" (click)="logout()"><i
+                        class="ft-power"></i> Cerrar Sesión</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="navbar-container main-menu-content" data-menu="menu-container">
+    </div>
+  </div>
+</div>

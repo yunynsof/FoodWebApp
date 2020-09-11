@@ -28,9 +28,36 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/assets/app-assets/vendors/css/vendors.min.css",
+              "src/assets/app-assets/vendors/css/tables/datatable/datatables.min.css",
+              "src/assets/app-assets/css/bootstrap.css",
+              "src/assets/app-assets/css/bootstrap-extended.css",
+              "src/assets/app-assets/css/colors.css",
+              "src/assets/app-assets/css/components.css",
+              "src/assets/app-assets/css/core/menu/menu-types/horizontal-menu.css",
+              "src/assets/app-assets/css/core/colors/palette-gradient.css",
+              "src/assets/app-assets/css/pages/login-register.css",
+              "src/assets/app-assets/css/pages/invoice.css",
+              "src/assets/app-assets/css/pages/users.css",
+              "src/assets/app-assets/css/pages/timeline.css",
+              "src/assets/css/style.css",
+              "src/styles.scss",
+              "node_modules/@mobiscroll/angular-lite/dist/css/mobiscroll.min.css"
+
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/app-assets/vendors/js/vendors.min.js",
+              "src/assets/app-assets/vendors/js/ui/jquery.sticky.js",
+              "src/assets/app-assets/vendors/js/tables/datatable/datatables.min.js",
+              "src/assets/app-assets/vendors/js/forms/validation/jqBootstrapValidation.js",
+              "src/assets/app-assets/js/core/app-menu.js",
+              "src/assets/app-assets/js/core/app.js",
+              "src/assets/app-assets/js/scripts/forms/form-login-register.js",
+              "src/assets/app-assets/js/scripts/tables/datatables/datatable-basic.js",
+              "src/assets/app-assets/js/polyfill.min.js",
+              "src/assets/app-assets/vendors/js/extensions/sweetalert2.all.js",
+              "src/assets/app-assets/js/scripts/extensions/sweet-alerts.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -123,6 +150,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "FoodWebApp"
+    }
+  },
+  "defaultProject": "FoodWebApp",
+  "cli": {
+    "analytics": "b6845d73-9bd6-4d8d-90df-2af8d7f4338d"
+  }
 }

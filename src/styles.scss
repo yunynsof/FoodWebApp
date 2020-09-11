@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+.error-message
+{
+  color: red;
+  font-size: 10.5px;
+  margin-left: 10px;
+  margin-top: 10px;
+
+}
+div.sticky{
+  position: -webkit-sticky;
+  z-index:100;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+
+.swal-text {
+  color: #463e3e;
+}
+
+
+.swal-footer {
+  background-color: #eee !important;
+  margin-top: 32px;
+  border-top: 1px solid #d2d4d4;
+  overflow: hidden;
+}
+
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 0.1rem;
+  background-color: #1d73c9;
+  color: rgb(255, 255, 255) !important;
+  font-size: 12px;
+  font-family: 'lato', 'arial', sans-serif !important;
+}

@@ -1,0 +1,267 @@
+<app-header></app-header>
+<br><br><br>
+
+<body class="horizontal-layout horizontal-menu 2-columns  " data-open="hover" data-menu="horizontal-menu"
+  data-color="bg-gradient-x-purple-blue" data-col="2-columns">
+  <!-- BEGIN: Content-->
+  <div class="app-content content">
+    <div class="content-wrapper">
+      <div class="content-wrapper-before"></div>
+      <div class="content-header row">
+      </div>
+      <div class="content-body">
+        <div id="user-profile">
+          <div class="row">
+            <div class="col-sm-12 col-xl-8">
+              <div class="media d-flex m-1 ">
+                <div class="align-left p-1">
+                  <a  class="profile-image">
+                    <img src="assets/app-assets/images/portrait/small/avatar-s-21.png"
+                      class="rounded-circle img-border height-100" alt="Card image">
+                  </a>
+                </div>
+                <div class="media-body text-left  mt-1">
+                  <h3 class="font-large-1 white">{{name}}<br>
+                    <span class="font-medium-1 white">(Gordit@ Feliz)</span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Project Timeline div starts-->
+
+          <div id="what-is" class="card">
+            <section id="form-repeater">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h4 class="card-title" id="repeat-form">Información Personal</h4>
+                      <a class="heading-elements-toggle">
+                        <i class="la la-ellipsis-h font-medium-3"></i>
+                      </a>
+                      <hr>
+
+                    </div>
+                    <div class="card-content collapse show">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-12 col-md-8">
+                          <div data-repeater-list="car">
+                            <div data-repeater-item>
+                              <form [formGroup]="validations_form" #form="ngForm">
+
+                                <div class="form row">
+
+                                  <div class="form-group mb-1 col-sm-12 col-md-5">
+                                    <label for="email-addr">Nombre</label>
+                                    <br>
+                                    <input type="text" class="form-control" id="firstname" [(ngModel)]="firstname"
+                                      placeholder="Primer nombre" formControlName="firstname"
+                                      (ngModelChange)="registerFormValidator.firstname.empty='';">
+                                    <div class="validation-errors">
+                                      <ng-container *ngFor="let validation of validation_messages.firstname">
+                                        <div class="error-message"
+                                          *ngIf="registerFormValidator.firstname.empty || validations_form.get('firstname').hasError(validation.type) && (validations_form.get('firstname').dirty || validations_form.get('firstname').touched)">
+                                          {{ validation.message }}
+                                        </div>
+                                      </ng-container>
+                                    </div>
+                                  </div>
+
+
+                                  <div class="form-group mb-1 col-sm-12 col-md-5">
+                                    <label for="email-addr">Apellido</label>
+                                    <br>
+                                    <input type="text" class="form-control" id="lastname" [(ngModel)]="lastname"
+                                      placeholder="Primer apellido" formControlName="lastname"
+                                      (ngModelChange)="registerFormValidator.lastname.empty='';">
+                                    <div class="validation-errors">
+                                      <ng-container *ngFor="let validation of validation_messages.lastname">
+                                        <div class="error-message"
+                                          *ngIf="registerFormValidator.lastname.empty || validations_form.get('lastname').hasError(validation.type) && (validations_form.get('lastname').dirty || validations_form.get('lastname').touched)">
+                                          {{ validation.message }}
+                                        </div>
+                                      </ng-container>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form row">
+                                  <div class="form-group mb-1 col-sm-12 col-md-5">
+                                    <label for="email-addr">Email</label>
+                                    <br>
+                                    <input type="email" class="form-control" id="email" [(ngModel)]="email"
+                                      placeholder="Tu correo electrónico" formControlName="email"
+                                      (ngModelChange)="registerFormValidator.email.empty='';">
+                                    <div class="validation-errors">
+                                      <ng-container *ngFor="let validation of validation_messages.email">
+                                        <div class="error-message"
+                                          *ngIf="registerFormValidator.email.empty || validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                                          {{ validation.message }}
+                                        </div>
+                                      </ng-container>
+                                    </div>
+                                  </div>
+                                  <div class="form-group mb-1 col-sm-12 col-md-5">
+                                    <div class="form-group">
+                                      <label for="companyinput5">Pais</label>
+                                      <select id="companyinput5" name="interested" class="form-control">
+                                        <option value="none" selected="" disabled="">Pais</option>
+                                        <option value="design">Honduras</option>
+                                        <option value="development">El Salvador</option>
+                                        <option value="illustration">Costa Rica</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center" *ngIf="loading">
+                                  <div class="spinner-grow" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                  </div>
+                                </div>
+
+                                <div class="card">
+                                  <div class="card-header">
+                                    <h4 class="card-title" id="basic-layout-form">Lista de direcciones</h4>
+                                  </div>
+                                  <div class="card-content collapse show">
+                                    <div class="card-body">
+
+                                      <form #form="ngForm" *ngFor="let item of address">
+                                        <div class="form-group col-12 mb-2 file-repeater">
+                                          <div data-repeater-list="repeater-list" >
+                                            <div data-repeater-item>
+                                              <div class="row mb-1">
+                                                <div class="col-9 col-xl-10">
+                                                  <div class="form-group">
+                                                    <label for="companyName">Dirección # {{item.iD}}</label>
+                                                    <input type="text" class="form-control"
+                                                      placeholder="Dirección" name="description" [(ngModel)]="item.description">
+                                                  </div>
+                                                  <div class="form-group">
+                                                    <textarea rows="5" class="form-control" name="address"
+                                                      placeholder="Detalles de dirección" [(ngModel)]="item.address"></textarea>
+                                                  </div>
+                                                </div>
+                                                <div class="col-2 col-xl-1">
+                                                  <button type="button" data-repeater-delete
+                                                    class="btn btn-icon btn-danger mr-1" title="Eliminar dirección" (click)="deleteOrder(item)">
+                                                    <i class="ft-x"></i>
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </form>
+
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row" style="margin-left: 2.4rem;">
+                                  <div>
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                      <button type="button" data-repeater-create class="btn btn-primary" title="Agregar dirección a la lista"(click)="addAddress()">
+                                        <i class="ft-plus"></i> Agregar dirección
+                                      </button>
+                                    </div>
+                                    </div>
+                                      <div class="btn-group" style="width: 14rem;"role="group" aria-label="Third group">
+                                        <button type="submit" class="btn btn-block btn-success btn-xs" title="Guardar/Actualizar listado de direcciones"(click)="userUpdate()">
+                                          Guardar
+                                        </button>
+                                      </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                          <div class="card border-grey border-lighten-2 mt-3">
+
+                              <div class="media d-flex border-info border-lighten-4 pl-1 pr-1">
+                                  <div class="align-self-center width-100">
+                                      <img class="img-fluid" src="assets/app-assets/images/logo/logo.png" alt="logo">
+                                  </div>
+                                  <div class="media-body text-center my-1">
+                                      <h3 class="font-medium-4">Chameleon
+                                          <span class="text-muted font-medium-1"> Admin Template </span>
+                                      </h3>
+                                      <hr>
+                                      <div class="col-12 text-center">
+                                          <a href="#" class="btn btn-social-icon round mr-1 btn-facebook">
+                                              <span class="ft-facebook"></span>
+                                          </a>
+                                          <a href="#" class="btn btn-social-icon round mr-1 btn-twitter">
+                                              <span class="ft-twitter white"></span>
+                                          </a>
+                                          <a href="#" class="btn btn-social-icon round mr-1 btn-instagram">
+                                              <span class="ft-instagram"></span>
+                                          </a>
+                                      </div>
+                                  </div>
+
+                              </div>
+
+                              <div class="card-body px-0">
+                                  <ul>
+                                      <li>
+                                          <strong>Website :</strong>
+                                          <a href="#" class="card-link">https://themeselection.com/</a>
+                                      </li>
+                                      <li>
+                                          <strong>Customer service :</strong> 012 1234 5678</li>
+                                      <li>
+                                          <strong>Founder :</strong> ThemeSelection</li>
+                                      <li>
+                                          <strong>Founded :</strong> 2018</li>
+                                      <li>
+                                          <strong>Support:</strong>
+                                          <a href="#">support@themeselection.com</a>
+                                      </li>
+                                  </ul>
+                                  <p class="card-text p-1">Ut tellus dui, rhoncus quis vulputate non, sodales ac ex. Fusce interdum efficitur purus quis
+                                      viverra. Vivamus eros urna, scelerisque ac enim a, rhoncus quis vulputate non, sodales ac
+                                      ex. Fusce interdum efficitur purus quis viverra. Vivamus eros urna, scelerisque ac enim a,
+                                      pharetra imperdiet dolor Some quick example text to build on the card title and make up the
+                                      bulk of the card's content.
+                                      <a href="#">Wikipedia</a>
+                                  </p>
+
+                              </div>
+
+                          </div>
+                      </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!--Project Timeline div ends-->
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- END: Content-->
+
+
+
+  <!-- BEGIN: Footer-->
+  <footer class="footer footer-static footer-light navbar-shadow">
+    <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span
+        class="float-md-center d-block d-md-inline-block">2019 &copy; Copyright <a class="text-bold-800 grey darken-2"
+          href="www.hmd.consulting" target="_blank">HMD CONSULTING</a></span>
+
+    </div>
+  </footer>
+  <!-- END: Footer-->
+</body>

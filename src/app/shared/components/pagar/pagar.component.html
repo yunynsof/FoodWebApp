@@ -1,0 +1,271 @@
+<app-header [notification]='notification'></app-header>
+<br><br><br>
+
+<body class="horizontal-layout horizontal-menu 2-columns  " data-open="hover" data-menu="horizontal-menu"
+  data-color="bg-gradient-x-purple-blue" data-col="2-columns">
+  <div class="app-content content">
+    <div class="content-wrapper">
+      <div class="content-wrapper-before"></div>
+      <div class="content-header row">
+        <div class="content-header-left col-md-4 col-12 mb-2">
+          <h1 class="content-header-title">Pedidos</h1>
+        </div>
+        <div class="content-header-right col-md-8 col-12">
+          <div class="breadcrumbs-top float-md-right">
+            <div class="breadcrumb-wrapper mr-1">
+              <ol class="breadcrumb">
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <section class="card">
+          <div id="invoice-template" class="card-body">
+            <!-- Invoice Company Details -->
+            <div id="invoice-company-details" class="row">
+              <div class="col-md-6 col-sm-12 text-left text-md-left">
+                <img src="assets/app-assets/images/logo/logo-80x80.png" alt="company logo" class="mb-2" width="70">
+                <ul class="px-0 list-unstyled">
+                  <li class="text-bold-700">Arepas Tegucigalpa</li>
+                  <li>Edificio Metropolis,</li>
+                  <li>2do piso,</li>
+                  <li>Honduras</li>
+                </ul>
+
+              </div>
+              <div class="col-md-6 col-sm-12 text-center text-md-right">
+                <h2>Pedido</h2>
+                <p># INV-001001</p>
+                <p>{{dateScreen}}</p>
+              </div>
+            </div>
+            <!--/ Invoice Company Details -->
+
+            <!-- Invoice Customer Details -->
+            <div id="invoice-customer-details" class="row pt-2">
+              <div class="col-md-6 col-sm-12">
+                <p class="text-muted">(+504) 2243-4601</p>
+                <p class="text-muted">email@arepategus.com</p>
+
+                <button type="button" class="btn btn-info btn-min-width btn-glow mr-1 mb-1" (click)="pedidos()"><i
+                    class="ficon ft-shopping-cart bell-shake"></i><a> Agrega mas pedidos</a></button>
+              </div>
+              <div class="col-md-6 col-sm-12 text-center text-md-right">
+                <p class="text-muted">Cuenta de</p>
+                <ul class="px-0 list-unstyled">
+                  <li class="text-bold-700">{{name}}</li>
+                  <li>Calle principal kennedy,</li>
+                </ul>
+              </div>
+            </div>
+            <!--/ Invoice Customer Details -->
+
+            <!-- Invoice Items Details -->
+            <div id="invoice-items-details" class="pt-2">
+              <div class="row">
+                <div class="table-responsive col-sm-12">
+                  <table id='testid' class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#Codigo</th>
+                        <th>Descripción</th>
+                        <th class="text-right width-200">Cantidad</th>
+                        <th class="text-right width-200">Monto</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let order of data">
+                        <th scope="row">{{order.id}}</th>
+                        <td>
+                          <p>{{order.name}}</p>
+                          <p class="text-muted">{{order.combo}}</p>
+                        </td>
+                        <td>
+                          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <button id="minus" class="btn btn-outline-primary box-shadow-1 btn-sm" title="Restar combo"
+                              (click)="subtractQuantity(order)">−</button>
+                            <input [(ngModel)]="order.quantity" class="form-control width-100 text-center">
+                            <button id="plus" class="btn btn-outline-success box-shadow-1 btn-sm" title="Sumar combo"
+                              (click)="sumQuantity(order)">+</button>
+                          </div>
+                        </td>
+                        <td class="text-right">{{order.prize}}</td>
+                        <td class="text-center">
+                          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <button type="button" (click)="deleteOrder(order)" title="Eliminar orden"
+                              class="btn btn-icon btn-outline-dark mr-1"><i class="ft-trash-2"></i></button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-md-7 col-sm-12 text-center text-md-left">
+
+                  <p class="lead">Descripción de Orden</p>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <textarea rows="1" class="form-control" name="address" placeholder="Detalles de la compra"
+                          [(ngModel)]="orderDesToEmail"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="lead">Tipo de envio</p>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <select data-placeholder="Select a state..." class="select2-icons form-control"
+                        (change)="updateEnvio()" id="select2-icons" [(ngModel)]="modeDev">
+                        <optgroup label="Opciones">
+                          <option data-icon="wordpress" *ngFor="let mode of deliveryMode.data" value={{mode.id}}>
+                            {{mode.mode}}</option>
+                        </optgroup>
+
+                      </select>
+                    </div>
+                  </div>
+                  <br>
+                  <div *ngIf="modeDev == 2">
+                    <p class="lead">Seleccione dirección</p>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <select data-placeholder="Select a state..." class="select2-icons form-control"
+                          (click)="verifyAddress()" id="select2-icons" [(ngModel)]="addresSelect">
+                          <optgroup label="Opciones">
+                            <option data-icon="wordpress" *ngFor="let address of address" value={{address.id}}>
+                              {{address.description}}</option>
+                          </optgroup>
+
+                        </select>
+                      </div>
+                    </div>
+                    <br>
+                  </div>
+
+                  <p class="lead">Métodos de Pago</p>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <select data-placeholder="Select a state..." class="select2-icons form-control" id="select2-icons"
+                        (change)="payChange()" [(ngModel)]="payment">
+                        <optgroup label="Opciones">
+                          <option data-icon="wordpress" *ngFor="let method of methodPay.data" value={{method.id}}>
+                            {{method.method}}</option>
+                        </optgroup>
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="payment == 1">
+                    <div class="col-md-14 col-sm-12">
+                      <div class="card">
+
+                        <div class="card-body">
+                          <h4 class="card-title">Puede realizar transferencia bancarias a las siguientes cuentas.</h4>
+                          <p class="card-text">BAC CREDOMATIC 78456544 / Nombre Arepas S.AD.</p>
+                          <p class="card-text">BANCO DE OCCIDENTE 78S23456544 / Nombre Arepas S.AD.</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row" *ngIf="payment == 2">
+                    <div class="col-md-8">
+                      <div class="card">
+
+                        <div class="card-body">
+                          <h4 class="card-title">¿Necesitas cambio?</h4>
+                          <div class="form-group">
+                            <label>De cuanto sera tu pago?</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">L.</span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="Cambio"
+                                aria-label="Amount (to the nearest dollar)" name="rateperhour"
+                                [(ngModel)]="amountPayCash">
+                              <div class="input-group-append">
+                                <span class="input-group-text">.00</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="col-md-5 col-sm-12">
+                  <br>
+                  <p class="lead">Total de cuenta</p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td>Sub Total</td>
+                          <td class="text-right">L. {{subTotal}}</td>
+                        </tr>
+                        <tr>
+                          <td>ISV (15%)</td>
+                          <td class="text-right">L. {{isv}}</td>
+                        </tr>
+                        <tr>
+                          <td>Envio</td>
+                          <td class="text-right">L. {{envio}}</td>
+                        </tr>
+                        <tr>
+                          <td class="text-bold-800">Total</td>
+                          <td class="text-bold-800 text-right">L. {{total}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <br>
+                </div>
+              </div>
+            </div>
+
+            <!-- Invoice Footer -->
+            <br>
+            <div id="invoice-footer">
+              <div class="row">
+                <div class="col-md-7 col-sm-12">
+                  <h6>Terminos & Condiciones</h6>
+                  <p>Si el pedido es por transferencia, se revisara el pedido vs la transferencia, el pedido tarda
+                    aproximadamente 30 min en llegar, todos nuestras entregas estan con bioseguridad.</p>
+                </div>
+                <div class="col-md-5 col-sm-12 text-center">
+                  <button type="button" class="btn btn-success width-200 buttonAnimation animated tada"
+                    title="Confirmar" (click)="pagar()"><i class="la la-paper-plane-o"></i> Confirmar Pedido</button>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center" *ngIf="loading">
+                <div class="spinner-grow" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+            <!--/ Invoice Footer -->
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <!-- END: Content-->
+  <!-- BEGIN: Footer-->
+  <footer class="footer footer-static footer-light navbar-shadow">
+    <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span
+        class="float-md-center d-block d-md-inline-block">2019 &copy; Copyright <a class="text-bold-800 grey darken-2"
+          href="www.hmd.consulting" target="_blank">HMD CONSULTING</a></span>
+    </div>
+  </footer>
+  <!-- END: Footer-->
+</body>
