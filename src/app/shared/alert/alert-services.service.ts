@@ -30,7 +30,7 @@ export class AlertServicesService {
 
     } else if (error.status == 401) {
 
-      swal("Error de autenticación", "Usuario no valido", "error");
+      swal("Error de autenticación", "Usuario o contraseña incorrecta", "error");
 
     } else if (error.status == 400) {
 
@@ -61,7 +61,7 @@ export class AlertServicesService {
       swal("Error de autenticación", "Usuario no valido", "error");
 
     } else if (error.status == 400) {
-      swal("Ya esta registrado este correo'", "Intente nuevamente con correo distinto", "error");
+      swal("Ya esta registrado este correo", "Intente nuevamente con correo distinto", "error");
 
     } else {
       swal("No se proceso peticion", "Intente nuevamente", "warning");
@@ -120,6 +120,10 @@ export class AlertServicesService {
 
   Success(message, title) {
     swal(title, message, "success");
+  }
+
+  error(message, title) {
+    swal(title, message, "error");
   }
 
   info(message, title) {

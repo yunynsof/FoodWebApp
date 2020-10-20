@@ -50,7 +50,15 @@ export class GenericServicesService {
       'Content-Type': 'application/json',
       'x-api-key': '6236796552'
     });
-    return this.httpClient.post(`${this.URL_SERVER}/users`, JSON.stringify(data), { headers });
+    let dataUser= {
+      username: data.username,
+      email: data.email,
+      firstname: data.firstname,
+      lastname: data.lastname,
+      telephone: data.telephone,
+      password: data.password
+    }
+    return this.httpClient.post(`${this.URL_SERVER}/usersccc`, JSON.stringify(dataUser), { headers });
   }
 
   recoverPass(data) {
@@ -219,9 +227,9 @@ export class GenericServicesService {
 
       email: {
         ccs: [],
-        from: "yunydev73@gmail.com",
-        password: "el_Pa$$w0rd123",
-        subject: "Test",
+        from: "webappfoodhmd@gmail.com",
+        password: "@Marco17",
+        subject: "Bienvenido a HMD Food Web",
         template: "Test",
         to: email
       },
@@ -238,59 +246,17 @@ export class GenericServicesService {
           url_image_instagram: "string",
           url_instagram: "string"
         },
-        title: "string",
+        title: "Bienvenido a HMD food Web",
         url_profile: "string"
       }
 
     };
-
-    return this.httpClient.post(`http://45.56.78.139:8080/hmd-email-service-app/email/v1/sendWelcome`, info, { headers });
+    console.log(JSON.stringify(info))
+    return this.httpClient.post(`http://45.79.32.149:8080/email/v1/sendWelcome`, info, { headers });
 
   }
 
-  // sendRessetPasswordAcount(email) {
-  //   const headers = new HttpHeaders({
-  //     'Authorization': 'Basic ' + btoa('admin' + ':' + 'Pa$$w0rd'),
-  //     'Content-Type': 'application/json'
-  //   });
-
-  //   let info = {
-
-  //     email: {
-  //       ccs: [],
-  //       from: "yunydev73@gmail.com",
-  //       password: "el_Pa$$w0rd123",
-  //       subject: "Test",
-  //       template: "Test",
-  //       to: email
-  //     },
-  //     ressetPassworAccount: {
-  //       bussines: {
-  //         bussines_name: "string",
-  //         url_bussines_image: "string",
-  //         url_web_page_bussines: "string",
-  //         url_whatsapp_bussines: "string"
-  //       },
-  //       socialNetwork: {
-  //         url_facebook: "string",
-  //         url_image_facebook: "string",
-  //         url_image_instagram: "string",
-  //         url_instagram: "string"
-  //       },
-  //       title: "string",
-  //       url_profile: "string",
-  //       url_password_resset: "string",
-  //       user: "string",
-  //       vpn_key_48_primary: "string"
-  //     }
-
-  //   };
-  //   console.log(JSON.stringify(info))
-  //   return this.httpClient.post(`http://45.56.78.139:8080/hmd-email-service-app/email/v1/sendRessetPasswordAcount`, info, { headers });
-
-  // }
-
-  sendOrderConfirmationRequest(order, orderDetails) {
+  sendOrderConfirmationRequest(order, orderDetails, addresName, name) {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + btoa('admin' + ':' + 'Pa$$w0rd'),
       'Content-Type': 'application/json'
@@ -300,9 +266,9 @@ export class GenericServicesService {
 
       email: {
         ccs: [],
-        from: "yunydev73@gmail.com",
-        password: "el_Pa$$w0rd123",
-        subject: "Test",
+        from: "webappfoodhmd@gmail.com",
+        password: "@Marco17",
+        subject: "Confimación de pedido HMD Food Web",
         template: "Test",
         to: localStorage.getItem('email')
       },
@@ -313,8 +279,8 @@ export class GenericServicesService {
           url_web_page_bussines: "string",
           url_whatsapp_bussines: "string"
         }, client: {
-          client_address: "string",
-          client_name: "string"
+          client_address: addresName,
+          client_name: name
         },
         order: order,
         orderDetails: orderDetails,
@@ -325,12 +291,12 @@ export class GenericServicesService {
           url_image_instagram: "string",
           url_instagram: "string"
         },
-        title: "string"
+        title: "Confirmación de orden"
       }
 
     };
     console.log(JSON.stringify(info))
-    return this.httpClient.post(`http://45.56.78.139:8080/hmd-email-service-app/email/v1/sendOrderConfirmationRequest`, info, { headers });
+    return this.httpClient.post(`http://45.79.32.149:8080/email/v1/sendOrderConfirmationRequest`, info, { headers });
 
   }
 
@@ -344,9 +310,9 @@ export class GenericServicesService {
 
       email: {
         ccs: [],
-        from: "yunydev73@gmail.com",
-        password: "el_Pa$$w0rd123",
-        subject: "Test",
+        from: "webappfoodhmd@gmail.com",
+        password: "@Marco17",
+        subject: "Recuperación de contraseña",
         template: "Test",
         to: email
       },
@@ -363,19 +329,18 @@ export class GenericServicesService {
           url_image_instagram: "string",
           url_instagram: "string"
         },
-        title: "string",
+        title: "Restablecer contraseña",
         url_profile: "string",
         url_password_resset: "string",
-        user: "string",
+        user: email,
         vpn_key_48_primary: "string"
       }
 
     };
-    console.log(JSON.stringify(info))
-    return this.httpClient.post(`http://45.56.78.139:8080/hmd-email-service-app/email/v1/sendRessetPasswordAcount`, info, { headers });
+    //console.log(JSON.stringify(info))
+    return this.httpClient.post(`http://45.79.32.149:8080/email/v1/sendRessetPasswordAcount`, info, { headers });
 
   }
-
 
   async logout() {
     localStorage.clear();

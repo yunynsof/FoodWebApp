@@ -39,6 +39,9 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = localStorage.getItem('id');
+    if (this.id == null || this.id == '' || this.id == undefined) {
+      this.router.navigate(['login']);
+    }
     this.getDataUser();
     this.validateFieldsForm();
   }

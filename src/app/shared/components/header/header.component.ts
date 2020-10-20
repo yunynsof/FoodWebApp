@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { GenericServicesService } from '../../services/generic-services.service';
 import { AlertServicesService } from '../../alert/alert-services.service';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+declare var $;
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,7 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 export class HeaderComponent implements OnInit {
   @Input() notification;
   username;
+  typeScreen = true;
 
   constructor(
     private authService: GenericServicesService,
@@ -20,7 +22,14 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    $(() => {
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        console.log('movil')
+        this.typeScreen = false;
+    }
+    });
     this.username = localStorage.getItem('username');
+    this.username = this.username.substr(0,10);
     this.validatioNotification();
   }
 

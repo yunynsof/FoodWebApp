@@ -4,7 +4,7 @@
 <body class="horizontal-layout horizontal-menu 2-columns  " data-open="hover" data-menu="horizontal-menu"
   data-color="bg-gradient-x-purple-blue" data-col="2-columns">
   <!-- BEGIN: Content-->
-  <form #form="ngForm" >
+  <form #form="ngForm">
     <div class="app-content content">
       <div class="content-wrapper">
         <div class="content-wrapper-before"></div>
@@ -49,7 +49,7 @@
 
           <!-- Columns section start -->
 
-          <section id="columns">
+          <!--   <section id="columns">
             <div class="row" id ='testid'>
               <div class="col-md-12 mt-1">
                 <div class="card-columns">
@@ -63,7 +63,7 @@
                           <p class="card-text">{{item.description}}</p>
                           <h5>L.{{item.prize}}</h5>
                           <div class="input-group btn-group-toggle"  data-toggle="buttons">
-                           <!-- <input type="number" placeholder="Cantidad..." min="1"   name="quantity" [(ngModel)]="item.quantity" class="form-control width-100 text-center">-->
+                            <input type="number" placeholder="Cantidad..." min="1"   name="quantity" [(ngModel)]="item.quantity" class="form-control width-100 text-center">
                             <button  class="btn btn-outline-dark box-shadow-1 btn-sm" title="Restar combo" (click)="subtractQuantity(item)">−</button>
                             <input placeholder="Cantidad..." name="quantity" value={{item.quantity}} class="form-control width-80 text-center ">
                             <button  class="btn btn-outline-success box-shadow-1 btn-sm mr-1" title="Sumar combo" (click)="sumQuantity(item)">+</button>
@@ -78,7 +78,44 @@
                 </div>
               </div>
             </div>
+          </section> -->
+
+          <section id="columns">
+            <div class="row" id='testid'>
+              <div class="col-md-12 mt-1">
+                <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+                  <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of combos">
+                    <mat-card class="mat-elevation-z4">
+                      <img mat-card-image src="{{item.img}}">
+
+                      <mat-card-content>
+                        <h4 class="card-title" style="color:#b60f2d;"><b>{{item.combo}}</b></h4>
+                        <p class="card-text">{{item.name}}</p>
+                        <p class="card-text">{{item.description}}</p>
+                        <h5>L.{{item.prize}}</h5>
+
+                        <div class="input-group btn-group-toggle" data-toggle="buttons">
+                          <!-- <input type="number" placeholder="Cantidad..." min="1"   name="quantity" [(ngModel)]="item.quantity" class="form-control width-100 text-center">-->
+                          <button class="btn btn-outline-dark box-shadow-1 btn-sm" title="Restar combo"
+                            (click)="subtractQuantity(item)">−</button>
+                          <input placeholder="Cantidad..." name="quantity" value={{item.quantity}}
+                            class="form-control width-80 text-center ">
+                          <button class="btn btn-outline-success box-shadow-1 btn-sm mr-1" title="Sumar combo"
+                            (click)="sumQuantity(item)">+</button>
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-info" type="button" title="Agregar combo"
+                              (click)="addCombo(item)">Añadir</button>
+                          </div>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </section>
+
           <!-- Columns section end -->
         </div>
       </div>
@@ -86,7 +123,8 @@
   </form>
   <!-- END: Content-->
 
-  <!-- BEGIN: Footer--><a  *ngIf="notification > '0'" class="btn btn-try-builder btn-bg-gradient-x-purple-red btn-glow white" title="Realizar pedido"
+  <!-- BEGIN: Footer--><a *ngIf="notification > '0'"
+    class="btn btn-try-builder btn-bg-gradient-x-purple-red btn-glow white" title="Realizar pedido"
     (click)="pagar()">PROCESAR AHORA!</a>
   <footer class="footer footer-static footer-light navbar-shadow">
     <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span

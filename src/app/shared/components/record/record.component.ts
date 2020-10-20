@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GenericServicesService } from '../../services/generic-services.service';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 declare var $;
@@ -26,8 +27,11 @@ export class RecordComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
+    private router: Router,
     private authService: GenericServicesService
-  ) { }
+  ) {
+
+  }
 
   @ViewChild('form', { static: false }) form: NgForm;
 
@@ -35,6 +39,10 @@ export class RecordComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = localStorage.getItem('id');
+    if (this.id == null || this.id == '' || this.id == undefined) {
+      this.router.navigate(['login']);
+    }
+
     this.getDataUser();
     this.getOrders();
 

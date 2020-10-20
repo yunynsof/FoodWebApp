@@ -6,6 +6,11 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MbscModule } from '@mobiscroll/angular-lite';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from "@angular/material/card";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -16,7 +21,12 @@ import { MbscModule } from '@mobiscroll/angular-lite';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    MbscModule
+    MbscModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatButtonModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

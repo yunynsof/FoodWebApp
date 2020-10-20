@@ -11,7 +11,7 @@ declare var $;
 export class PedidosComponent implements OnInit {
 
   combo;
-  name;
+  id;
   prize;
   arrayCombos: any = [];
   notification;
@@ -21,11 +21,15 @@ export class PedidosComponent implements OnInit {
     private route: ActivatedRoute,
     private alertService: AlertServicesService
   ) {
+    this.id = localStorage.getItem('id');
+    if (this.id == null || this.id == '' || this.id == undefined) {
+      this.router.navigate(['login']);
+    }
     this.route.queryParams.subscribe(params => {
 
       if (this.router.getCurrentNavigation().extras.state) {
         this.arrayCombos = this.router.getCurrentNavigation().extras.state;
-        console.log(this.arrayCombos)
+
       }
     });
   }
@@ -39,7 +43,7 @@ export class PedidosComponent implements OnInit {
 
         $("#testid").keydown(function(e) {
             var elid = $(document.activeElement).hasClass('textInput');
-           console.log(e.keyCode + ' && ' + elid);
+
             //prevent both backspace and delete keys
             if ((e.keyCode === 8 || e.keyCode === 46) && !elid) {
                 return false;
@@ -51,7 +55,7 @@ export class PedidosComponent implements OnInit {
   combos = [
     {
       id: 1,
-      img: "../../../../assets/app-assets/images/carousel/combo1.jpg",
+      img: "assets/app-assets/images/carousel/combo1.jpg",
       combo: "COMBO #1",
       name: "UNA AREPA DE SU ELECCIÓN + JUGO",
       description: "Nuestras deliciosas arepas de pollo, res, cochinita con sus complementos frescos y un jugo natural nativo de venezuela, pruebalo.",
@@ -60,7 +64,7 @@ export class PedidosComponent implements OnInit {
     },
     {
       id: 2,
-      img: "../../../../assets/app-assets/images/carousel/combo2.jpg",
+      img: "assets/app-assets/images/carousel/combo2.jpg",
       combo: "COMBO #2",
       name: "DESGUSTACIÓN + 2 BEBIDAS + 1 POSTRE",
       description: "Nuestras deliciosas arepas de pollo, res, cochinita con sus complementos frescos y un jugo natural nativo de venezuela, pruebalo.",
@@ -69,7 +73,7 @@ export class PedidosComponent implements OnInit {
     },
     {
       id: 3,
-      img: "../../../../assets/app-assets/images/carousel/combo3.jpg",
+      img: "assets/app-assets/images/carousel/combo3.jpg",
       combo: "COMBO #3",
       name: "3 TEQUEÑOS + 1 JUGO + 1 AREPA",
       description: "Nuestras deliciosas arepas de pollo, res, cochinita con sus complementos frescos y un jugo natural nativo de venezuela, pruebalo.",
@@ -78,7 +82,7 @@ export class PedidosComponent implements OnInit {
     },
     {
       id: 4,
-      img: "../../../../assets/app-assets/images/carousel/combo4.jpg",
+      img: "assets/app-assets/images/carousel/combo4.jpg",
       combo: "COMBO #4",
       name: "2 EMPANADAS + 1 JUGO",
       description: "Nuestras deliciosas arepas de pollo, res, cochinita con sus complementos frescos y un jugo natural nativo de venezuela, pruebalo.",
@@ -87,8 +91,53 @@ export class PedidosComponent implements OnInit {
     },
     {
       id: 5,
-      img: "../../../../assets/app-assets/images/carousel/combo5.jpg",
+      img: "assets/app-assets/images/carousel/combo5.jpg",
       combo: "COMBO #5",
+      name: "1 ENTRADA + 2 AREPAS + 1 JUGO",
+      description: "Nuestras deliciosas arepas de pollo, res, cochinita con sus complementos frescos y un jugo natural nativo de venezuela, pruebalo.",
+      prize: "349.00",
+      quantity: ""
+    },
+    {
+      id: 6,
+      img: "assets/app-assets/images/carousel/combo5.jpg",
+      combo: "COMBO #6",
+      name: "1 ENTRADA + 2 AREPAS + 1 JUGO",
+      description: "Nuestras deliciosas arepas de pollo, res, cochinita con sus complementos frescos y un jugo natural nativo de venezuela, pruebalo.",
+      prize: "349.00",
+      quantity: ""
+    },
+    {
+      id: 7,
+      img: "assets/app-assets/images/carousel/combo5.jpg",
+      combo: "COMBO #7",
+      name: "1 ENTRADA + 2 AREPAS + 1 JUGO",
+      description: "Nuestras deliciosas arepas de pollo, res, cochinita con sus complementos frescos y un jugo natural nativo de venezuela, pruebalo.",
+      prize: "349.00",
+      quantity: ""
+    },
+    {
+      id: 8,
+      img: "assets/app-assets/images/carousel/combo5.jpg",
+      combo: "COMBO #8",
+      name: "1 ENTRADA + 2 AREPAS + 1 JUGO",
+      description: "Nuestras deliciosas arepas de pollo, res, cochinita con sus complementos frescos y un jugo natural nativo de venezuela, pruebalo.",
+      prize: "349.00",
+      quantity: ""
+    },
+    {
+      id: 9,
+      img: "assets/app-assets/images/carousel/combo5.jpg",
+      combo: "COMBO #9",
+      name: "1 ENTRADA + 2 AREPAS + 1 JUGO",
+      description: "Nuestras deliciosas arepas de pollo, res, cochinita con sus complementos frescos y un jugo natural nativo de venezuela, pruebalo.",
+      prize: "349.00",
+      quantity: ""
+    },
+    {
+      id: 10,
+      img: "assets/app-assets/images/carousel/combo5.jpg",
+      combo: "COMBO #10",
       name: "1 ENTRADA + 2 AREPAS + 1 JUGO",
       description: "Nuestras deliciosas arepas de pollo, res, cochinita con sus complementos frescos y un jugo natural nativo de venezuela, pruebalo.",
       prize: "349.00",
@@ -165,8 +214,8 @@ export class PedidosComponent implements OnInit {
 
   subtractQuantity(orden) {
 
-    if(orden.quantity < 2){
-      this.alertService.dangerToast('Cantidad NO puede ser 0 ');
+    if(orden.quantity < 1){
+      this.alertService.dangerToast('Cantidad NO puede ser menor de 0 ');
     }else {
       orden.quantity = orden.quantity-1;
     }

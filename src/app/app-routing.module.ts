@@ -16,8 +16,9 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'recover-password', component: RecoverPasswordComponent},
   {path: 'user-profile', component: UserProfileComponent},
-  {path: 'record', component: RecordComponent}
-];
+  {path: 'record', component: RecordComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full' },
+  {path: '**', redirectTo: '/login'}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

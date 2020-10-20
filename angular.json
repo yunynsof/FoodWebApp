@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/assets/app-assets/vendors/css/vendors.min.css",
               "src/assets/app-assets/vendors/css/tables/datatable/datatables.min.css",
               "src/assets/app-assets/css/bootstrap.css",
@@ -43,7 +44,6 @@
               "src/assets/css/style.css",
               "src/styles.scss",
               "node_modules/@mobiscroll/angular-lite/dist/css/mobiscroll.min.css"
-
             ],
             "scripts": [
               "src/assets/app-assets/vendors/js/vendors.min.js",
@@ -119,6 +119,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []

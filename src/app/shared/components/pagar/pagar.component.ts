@@ -34,6 +34,7 @@ export class PagarComponent implements OnInit {
   amountPayCash = 0;
   address = [];
   addresSelect;
+  addresSelectName;
   deliveryMode: any = [];
   modeDev;
 
@@ -46,8 +47,12 @@ export class PagarComponent implements OnInit {
   ) {
     this.firstname = localStorage.getItem('firstname');
     this.lastname = localStorage.getItem('lastname');
-    this.name = this.firstname + ' ' + this.lastname
 
+    if (this.firstname == null || this.firstname == '' || this.firstname == undefined) {
+      this.router.navigate(['login']);
+    }
+
+    this.name = this.firstname + ' ' + this.lastname
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.data = this.router.getCurrentNavigation().extras.state;
@@ -416,9 +421,17 @@ export class PagarComponent implements OnInit {
       });
     }
 
-   console.log(orderMaster)
-   console.log(orderDetails)
-   this.authService.sendOrderConfirmationRequest(orderMaster, orderDetails).subscribe();
+    if (this.addresSelect == null || this.addresSelect == undefined){
+    this.authService.sendOrderConfirmationRequest(orderMaster, orderDetails, this.address[0].address, this.name ).subscribe();
+   } else {
+
+    for(let a=0; a<this.address.length; a++){
+      if(this.addresSelect == this.address[a].id){
+        this.authService.sendOrderConfirmationRequest(orderMaster, orderDetails, this.address[a].address, this.name ).subscribe();
+      }
+    }
+   }
+
     this.loading = false;
     this.alertService.Succes('Su pedido ya fue solicitado');
     this.clear();

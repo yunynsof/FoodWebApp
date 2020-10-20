@@ -10,6 +10,10 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RecordComponent } from './components/record/record.component';
+import { MatCardModule } from "@angular/material/card";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 
 
@@ -31,6 +35,10 @@ import { RecordComponent } from './components/record/record.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatButtonModule,
+    FlexLayoutModule,
 
   ]
 })
