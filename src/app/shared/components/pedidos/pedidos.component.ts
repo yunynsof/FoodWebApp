@@ -15,6 +15,7 @@ export class PedidosComponent implements OnInit {
   prize;
   arrayCombos: any = [];
   notification;
+  test;
 
   constructor(
     private router: Router,
@@ -22,6 +23,11 @@ export class PedidosComponent implements OnInit {
     private alertService: AlertServicesService
   ) {
     this.id = localStorage.getItem('id');
+    this.test = localStorage.getItem('carShop');
+    if (this.test != null) {
+      this.arrayCombos = JSON.parse(this.test);
+    }
+
     if (this.id == null || this.id == '' || this.id == undefined) {
       this.router.navigate(['login']);
     }
@@ -39,16 +45,16 @@ export class PedidosComponent implements OnInit {
     $(() => {
       $("#testid").keypress(function (evt) {
         evt.preventDefault();
-        });
+      });
 
-        $("#testid").keydown(function(e) {
-            var elid = $(document.activeElement).hasClass('textInput');
+      $("#testid").keydown(function (e) {
+        var elid = $(document.activeElement).hasClass('textInput');
 
-            //prevent both backspace and delete keys
-            if ((e.keyCode === 8 || e.keyCode === 46) && !elid) {
-                return false;
-            };
-        });
+        //prevent both backspace and delete keys
+        if ((e.keyCode === 8 || e.keyCode === 46) && !elid) {
+          return false;
+        };
+      });
     });
   }
 
@@ -201,23 +207,31 @@ export class PedidosComponent implements OnInit {
   }
 
   pagar() {
-    let navigationExtras: NavigationExtras = {
-      state: this.arrayCombos
-    };
-    this.router.navigate(['pagar'], navigationExtras);
+    let date = new Date();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+
+    if (hour >= 10 && hour < 22) {
+      let navigationExtras: NavigationExtras = {
+        state: this.arrayCombos
+      };
+      this.router.navigate(['pagar'], navigationExtras);
+    } else {
+      this.alertService.warning('Gracias por preferirnos, por los momentos estamos fuera de servicio, pronto te estaremos atendiendo.', ' Atención');
+    }
   }
 
   sumQuantity(orden) {
 
-    orden.quantity =  Number(orden.quantity)+1;
+    orden.quantity = Number(orden.quantity) + 1;
   }
 
   subtractQuantity(orden) {
 
-    if(orden.quantity < 1){
+    if (orden.quantity < 1) {
       this.alertService.dangerToast('Cantidad NO puede ser menor de 0 ');
-    }else {
-      orden.quantity = orden.quantity-1;
+    } else {
+      orden.quantity = orden.quantity - 1;
     }
   }
 
