@@ -45,6 +45,14 @@ export class PagarComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: GenericServicesService
   ) {
+    let date = new Date();
+    let hour = date.getHours();
+
+    if (!(hour >= 10 && hour < 22)) {
+      this.alertService.warning('Gracias por preferirnos, por los momentos estamos fuera de servicio, pronto te estaremos atendiendo.', ' Atención');
+      this.router.navigate(['pedidos']);
+    }
+
     this.firstname = localStorage.getItem('firstname');
     this.lastname = localStorage.getItem('lastname');
 

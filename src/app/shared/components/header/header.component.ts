@@ -38,10 +38,17 @@ export class HeaderComponent implements OnInit {
   }
 
   pagar() {
-    let navigationExtras: NavigationExtras = {
-      state: JSON.parse(localStorage.getItem('carShop'))
-    };
-    this.router.navigate(['pagar'], navigationExtras);
+    let date = new Date();
+    let hour = date.getHours();
+
+    if (hour >= 10 && hour < 22) {
+      let navigationExtras: NavigationExtras = {
+        state: JSON.parse(localStorage.getItem('carShop'))
+      };
+      this.router.navigate(['pagar'], navigationExtras);
+    } else {
+      this.alertService.warning('Gracias por preferirnos, por los momentos estamos fuera de servicio, pronto te estaremos atendiendo.', ' Atención');
+    }
   }
 
   userProfile() {

@@ -130,6 +130,10 @@ export class AlertServicesService {
     swal(title, message, "info");
   }
 
+  warning(message, title) {
+    swal(title, message, "warning");
+  }
+
   errorToast(message) {
     swal('No se proceso peticion', message, "warning");
   }

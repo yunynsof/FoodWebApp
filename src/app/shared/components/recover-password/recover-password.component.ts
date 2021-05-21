@@ -32,8 +32,25 @@ export class RecoverPasswordComponent implements OnInit {
   recover(form) {
     if (this.formValidator()) {
       this.loading = true;
-      this.authService.sendRessetPasswordAcount(form.value.email).subscribe();
-      this.authService.recoverPass(form.value).subscribe(
+      this.authService.sendRessetPasswordAcount(form.value.email).subscribe(
+        data => {
+          this.loading = false;
+          this.alertService.Success('Enviado correctamente', 'verifica tu correo')
+        },
+        error => {
+          console.log(error);
+          this.loading = false;
+          this.alertService.errorRecoveryPwd();
+        },
+        () => {
+
+          setTimeout(() => {
+            this.router.navigate(['login'])
+          }, 3000);
+
+        }
+      );
+  /*     this.authService.recoverPass(form.value).subscribe(
         data => {
           this.loading = false;
           this.alertService.presentToast('Enviado correctamente; verifica tu correo')
@@ -50,7 +67,7 @@ export class RecoverPasswordComponent implements OnInit {
           }, 3000);
 
         }
-      );
+      ); */
     }
   }
 

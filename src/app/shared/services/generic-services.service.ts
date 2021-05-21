@@ -235,16 +235,16 @@ export class GenericServicesService {
       },
       welcomeApplication: {
         bussines: {
-          bussines_name: "string",
-          url_bussines_image: "string",
-          url_web_page_bussines: "string",
-          url_whatsapp_bussines: "string"
+          bussines_name: "Arepa en Tegus",
+          url_bussines_image: "http://hmd.consulting/images/logo-arepa.png",
+          url_web_page_bussines: "https://www.facebook.com/Arepaentegus/",
+          url_whatsapp_bussines: "https://wa.me/50488687490"
         },
         socialNetwork: {
-          url_facebook: "string",
-          url_image_facebook: "string",
-          url_image_instagram: "string",
-          url_instagram: "string"
+          url_facebook: "https://www.facebook.com/Arepaentegus",
+          url_image_facebook: "http://hmd.consulting/images/facebook-light.png",
+          url_image_instagram: "http://hmd.consulting/images/instagram-light.png",
+          url_instagram: "https://www.instagram.com/arepaentegus/?igshid=132pr39yhewo6"
         },
         title: "Bienvenido a HMD food Web",
         url_profile: "string"
@@ -265,7 +265,7 @@ export class GenericServicesService {
     let info = {
 
       email: {
-        ccs: [],
+        ccs: ["mzuniga@hmd.consulting","lehernandezhn@gmail.com","mvillalobos@hmd.consulting"],
         from: "webappfoodhmd@gmail.com",
         password: "@Marco17",
         subject: "Confimación de pedido HMD Food Web",
@@ -274,22 +274,22 @@ export class GenericServicesService {
       },
       orderConfirmation: {
         bussines: {
-          bussines_name: "string",
-          url_bussines_image: "string",
-          url_web_page_bussines: "string",
-          url_whatsapp_bussines: "string"
+          bussines_name: "Arepa en Tegus",
+          url_bussines_image: "http://hmd.consulting/images/logo-arepa.png",
+          url_web_page_bussines: "https://www.facebook.com/Arepaentegus/",
+          url_whatsapp_bussines: "https://wa.me/50488687490"
         }, client: {
           client_address: addresName,
           client_name: name
         },
         order: order,
         orderDetails: orderDetails,
-        shopping_cart_48_primary: "string",
+        shopping_cart_48_primary: "http://hmd.consulting/images/shopping_cart-48-primary.png",
         socialNetwork: {
-          url_facebook: "string",
-          url_image_facebook: "string",
-          url_image_instagram: "string",
-          url_instagram: "string"
+          url_facebook: "https://www.facebook.com/Arepaentegus",
+          url_image_facebook: "http://hmd.consulting/images/facebook-light.png",
+          url_image_instagram: "http://hmd.consulting/images/instagram-light.png",
+          url_instagram: "https://www.instagram.com/arepaentegus/?igshid=132pr39yhewo6"
         },
         title: "Confirmación de orden"
       }
@@ -309,7 +309,7 @@ export class GenericServicesService {
     let info = {
 
       email: {
-        ccs: [],
+        ccs: ["mzuniga@hmd.consulting","lehernandezhn@gmail.com","mvillalobos@hmd.consulting"],
         from: "webappfoodhmd@gmail.com",
         password: "@Marco17",
         subject: "Recuperación de contraseña",
@@ -318,22 +318,22 @@ export class GenericServicesService {
       },
       ressetPassworAccount: {
         bussines: {
-          bussines_name: "string",
-          url_bussines_image: "string",
-          url_web_page_bussines: "string",
-          url_whatsapp_bussines: "string"
+          bussines_name: "Arepas en Tegus",
+          url_bussines_image: "http://hmd.consulting/images/logo-arepa.png",
+          url_web_page_bussines: "https://www.facebook.com/Arepaentegus/",
+          url_whatsapp_bussines: "https://wa.me/50488687490"
         },
         socialNetwork: {
-          url_facebook: "string",
-          url_image_facebook: "string",
-          url_image_instagram: "string",
-          url_instagram: "string"
+          url_facebook: "https://www.facebook.com/Arepaentegus",
+          url_image_facebook: "http://hmd.consulting/images/facebook-light.png",
+          url_image_instagram: "http://hmd.consulting/images/instagram-light.png",
+          url_instagram: "https://www.instagram.com/arepaentegus/?igshid=132pr39yhewo6"
         },
         title: "Restablecer contraseña",
         url_profile: "string",
         url_password_resset: "string",
         user: email,
-        vpn_key_48_primary: "string"
+        vpn_key_48_primary: "http://hmd.consulting/images/vpn_key-48-primary.png"
       }
 
     };
